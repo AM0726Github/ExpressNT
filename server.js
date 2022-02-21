@@ -1,25 +1,56 @@
-const express = require('express');
+//adding node libraries
+const fs = require("fs");
+const express = require("express");
+const path = require("path");
 
-const fs = require('fs');
-const path = require('path');
-
-// Setting up defoult port to 3001
-const PORT = process.env.PORT || 3001;
-
+// app to express
 const app = express();
-const apiRoutes = require('./routes/apiRoutes');
-const htmlRoutes = require('./routes/htmlRoutes');
+// setting up local port constant to 3002
+const PORT = process.env.PORT || 3002;
 
-app.use(express.urlencoded({ extended: true }));
-// Use .JSON method to parse data
-app.use(express.json());
-// Add 'public' to statics
+//addin 'public' to express statics
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-// Use routes
-app.use('/api', apiRoutes);
-app.use('/', htmlRoutes);
-
-app.listen(PORT, () => {
-    console.log(`API server now on port ${PORT}!`);
+// Writing functional get routes
+app.get("/notes", (req, res) => {
+    res.sendFile(path.join(__dirname, "/public/notes.html"));
 });
+
+app.get("/api/notes", (req, res) => {
+    res.sendFile(path.join(__dirname, "/db/db.json"));
+});
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "/public/index.html"));
+});
+
+// Writing post route for saving notes
+app.post("/api/notes", (req, res) => {
+    let newNote = req.body;
+    let noteList = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    let notelength = (noteList.length).toString();
+
+    newNote.id = notelength;
+    noteList.push(newNote);
+
+    fs.writeFileSync("./db/db.json", JSON.stringify(noteList));
+    res.json(noteList);
+})
+
+//Writing Delete route
+app.delete("/api/notes/:id", (req, res) => {
+    let noteList = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    let noteId = (req.params.id).toString();
+
+    noteList = noteList.filter(selected =>{
+        return selected.id != noteId;
+    })
+
+    fs.writeFileSync("./db/db.json", JSON.stringify(noteList));
+    res.json(noteList);
+});
+
+
+app.listen(PORT, () => console.log("Server listening on port " + PORT));
