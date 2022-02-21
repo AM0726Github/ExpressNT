@@ -38,4 +38,4 @@ The following images show the web application's appearance and functionality:
 
 ![Main Page](https://raw.githubusercontent.com/AM0726Github/ExpressNT/main/public/assets/ProjectScreenshotes/Screenshot%202022-02-21.jpg)
 
-![Main Page](https://github.com/AM0726Github/ExpressNT/blob/main/public/assets/ProjectScreenshotes/Screenshot%202022-02-21.jpg)
+![Main Page](https://github.com/AM0726Github/ExpressNT/blob/main/public/assets/ProjectScreenshotes/Screenshot%202022-02-21%20124051.jpg)
