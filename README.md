@@ -36,6 +36,6 @@ https://hidden-waters-42471.herokuapp.com/notes
 
 The following images show the web application's appearance and functionality: 
 
-![Main Page](./public/assets/ProjectScreenshotes/Screenshot 2022-02-21.jpg)
+![Main Page](https://raw.githubusercontent.com/AM0726Github/ExpressNT/main/public/assets/ProjectScreenshotes/Screenshot%202022-02-21.jpg)
 
-![Main Page](./public/assets/ProjectScreenshotes/Screenshot 2022-02-21 124051.jpg)
+![Main Page](https://github.com/AM0726Github/ExpressNT/blob/main/public/assets/ProjectScreenshotes/Screenshot%202022-02-21.jpg)
